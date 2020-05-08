@@ -46,9 +46,11 @@
 			抽象工厂( IFactory ) ==> 多个具体工厂( FactoryA  FactoryB )
 			抽象产品A( abstractProductA )==>多个不同的具体产品( ProductA1  ProductA2 )
 			抽象产品B( abstractProductB )==>多个不同的具体产品( ProductB1  ProductB2 )
-			为创建特定产品创建不同工厂
+			为创建特定产品创建不同工厂，不同工厂生产不同的具体产品，把工厂抽象
 	
-	十一、
+	十一、状态模式：状态判断复杂，把状态判断转移到表示 不同这状态 的一系列类中，
+		      状态抽象，一系列表示不同状态的类，持有状态实例维护不同状态
+	
 	
 	十二、
 	

@@ -1,0 +1,7 @@
+File类
+File(String path)   //构造方法
+File(File parent, String child)  //构造方法
+boolean createNewFile()   //创建新文件
+boolean exists()   //File是否存在
+boolean delete()   //删除File
+File getParentFile()

@@ -1,0 +1,47 @@
+JNI知识点
+JavaVM Java虚拟机，全进程只有一个对象
+JNIEnv 线程相关的JNI环境的结构体，存放了JNI内部函数的指针，可以调用java，操作jobject等
+jfieldID GetFieldID(jclass clazz, const char *name, const char *sig);
+jmethodID GetMethodID(jclass clazz, const char *name, const char *sig);
+参数：jclass:java类; name 变量名或函数名; sig 签名信息(对参数和返回值的描述，java中方法重载，使用签名信息区别)
+
+
+取得java的XXXc类(一般会是传入的第二个参数 jobject obj)
+方式一通过路径：jclass jxxxclass=env->FindClass("XXX/XXX/XXXc");
+方式二传入参数：jclass jxxxclass=env->GetObjectClass(obj);
+访问成员变量和调用成员函数jxxxclass使用obj
+
+通过FindClass得到的jclass对象作为获取java类中方法或变量的参数
+
+1.成员变量
+获取java中成员变量xxxf
+jfieldID jxxxf=env->GetFieldID(jxxxclass , "xxxj", "I" );
+
+使用取得成员变量
+在jni侧取得java侧的值
+jint jxxxfv=env->GetIntField(jxxxclass, jxxxf);
+在jni侧修改java侧的值
+env->SetIntField(jxxxclass, jxxxf, new_vuale);
+
+2.函数
+取得java的XXXc类的xxxfun方法
+jxxxfun=env->GetMethodID(jxxxclass, "xxxfun", "(Lang/lang/String;JJ)V");
+签名信息（）内是参数，每个参数用";"隔开，（）外是返回值。
+类型          对应签名
+boolean        Z  
+byte           B  
+char           C  
+short          S  
+int            I  
+long           J  
+float          F  
+double         D  
+void           V  
+object         L用/分隔包的完整类名：   Ljava/lang/String;（对象） 
+Array          [签名                 [Ljava/lang/String（String数组）;  
+Method         (参数1类型签名 参数2类型签名···)返回值类型签名
+
+使用获取的函数（调用java方法）     
+CallVoidMethod，第一个java的这个类（jni获取的类），第二个参数要调用的方法（jni转化之后的函数指针），从三个参数开始就是需要传给java方法的参数
+如果是静态方法使用CallStaticVoidMethod
+env->CallVoidMethod(jxxxclass, jxxxfun, xxxfun的参数……);

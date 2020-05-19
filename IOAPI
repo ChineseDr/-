@@ -1,7 +1,13 @@
+位  是计算机 内部数据 储存的最小单位，每个二进制数字0或者1就是一位，11001100是一个八位二进制数。
+字节Byte  8个位构成一个字节，1B（byte,字节）= 8bit（位）
+字符：是指计算机中使用的字母、数字、字和符号
+
 File类
 File(String path)   //构造方法
 File(File parent, String child)  //构造方法
 boolean createNewFile()   //创建新文件
 boolean exists()   //File是否存在
 boolean delete()   //删除File
-File getParentFile()
+File getParentFile()  //取得当前路径的父路径
+boolean mkdirs()   //指定File的父路径不存在，获取父路径后调用创建
+long length()  //

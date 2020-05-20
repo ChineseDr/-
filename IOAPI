@@ -33,7 +33,7 @@ File[] listFiles()  //列出当前路径下的所有File封装对象
 InputStream   字节输入流
 void closed() \\关闭字节输入流
 sbstract int read()  \\读取单个字节，返回读取字节内容，如果没有内容返回-1
-int read(byte[] b)  \\将读取的数据保存在字节数组b中，并返回长度，最长b.length,如果已经读到结尾返回-1
+int read(byte[] b)  \\将读取的数据保存在字节数组b中，并返回读取的有效数据字节个数，最长b.length,如果已经读到结尾返回-1
 int read(byte[] b, int off, int len)   \\将读取的数据保存到节数组b指定区域中，off位置开始存储，读取len个字节，并返回读取的长度
 
 子类
@@ -51,22 +51,29 @@ void write(byte[] b, int off, int len)  \\输出部分数组
 
 子类
 FileOutputStream(File file)   //将内容输出到指定文件，每次调用都会覆写已存在文件
-FileOutputStream(File file,boolean append)  //将内容输出到指定文件，追加新内容不会覆写
+FileOutputStream(File file,boolean append)  //将内容输出到指定文件，追加新内容,不会覆写原有内容
+
+
+Reader  字符输入流
+void closed()
+int read()  //读取单个字符
+int read(char[] buff)  //读取数据到字符数组中
+int read()
+int skip() //跳过字节长度
+
+
+子类
+FileReader(File file)   \\读取指定文件的数据
 
 
 
+Writer   字符输出流
+void closed()  //关闭字符输出流
+void flush()   //强制刷新
+Writer append(CharSequence csq)    //向指定文件追加数据,返回Writer可以链式调用
+void write(String str)   //向指定文件写入字符串数据
+void write(char[] buf)   //向指定文件写入字符数组
 
-
-Reader
-
-
-
-
-
-
-Writer
-
-
-
-
-
+子类
+FileWriter(File file)   //将内容输出到指定文件，每次调用都会覆写已存在文件，  append和write函数是否覆写都与对象创建模式有关
+FileWriter(File file, boolean append)  //将内容输出到指定文件，追加新内容,不会覆写原有内容

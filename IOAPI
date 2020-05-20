@@ -2,6 +2,18 @@
 字节Byte：  8个位构成一个字节，1B（byte,字节）= 8bit（位）
 字符：是指计算机中使用的字母、数字、字和符号
 
+
+IO流操作
+1. 指定一个路径通过File类定义一个要操作的文件或路径
+	File file = new File("")
+2. 通过字节或字符流的子类实例化一个流对象
+	InputStream ins=new InputStream(file)
+3. 进行数据读(输入\in)写(输出\out)操作
+	ins.read()
+4. 关闭流
+	ins.closed()
+
+
 File类
 File(String path)   //构造方法
 File(File parent, String child)  //构造方法
@@ -9,5 +21,52 @@ boolean createNewFile()   //创建新文件
 boolean exists()   //File是否存在
 boolean delete()   //删除File
 File getParentFile()  //取得当前路径的父路径
-boolean mkdirs()   //指定File的父路径不存在，获取父路径后调用创建
+boolean mkdirs()   //给定路径File的父路径不存在，获取父路径后调用创建所有不存在的路径
 long length()  //获取文件大小，以字节为单位
+boolean isFile()  //判断给定路径的file是否是文件
+boolean isDirectory()  //判断给定路径的file是否是文件夹
+String[] list()  //列出当前路径下的所有内容(文件、文件夹)；注：构造File时传入路径必须是文件夹，如果是文件会报错、
+File[] listFiles()  //列出当前路径下的所有File封装对象
+
+
+
+InputStream   字节输入流
+void closed() \\关闭字节输入流
+sbstract int read()  \\读取单个字节，返回读取字节内容，如果没有内容返回-1
+int read(byte[] b)  \\将读取的数据保存在字节数组b中，并返回长度，最长b.length,如果已经读到结尾返回-1
+int read(byte[] b, int off, int len)   \\将读取的数据保存到节数组b指定区域中，off位置开始存储，读取len个字节，并返回读取的长度
+
+子类
+FileInputStream(File file)
+
+
+
+
+OutputStream  字节输出流
+void close()  \\关闭字节输出流
+void flush()   \\强制刷新
+abstract void writ(int b)   \\输出单个字节(从IO流向文件输出)
+void write(byte[] b)  \\输出全部数组
+void write(byte[] b, int off, int len)  \\输出部分数组
+
+子类
+FileOutputStream(File file)   //将内容输出到指定文件，每次调用都会覆写已存在文件
+FileOutputStream(File file,boolean append)  //将内容输出到指定文件，追加新内容不会覆写
+
+
+
+
+
+Reader
+
+
+
+
+
+
+Writer
+
+
+
+
+

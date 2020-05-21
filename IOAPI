@@ -77,3 +77,15 @@ void write(char[] buf)   //向指定文件写入字符数组
 子类
 FileWriter(File file)   //将内容输出到指定文件，每次调用都会覆写已存在文件，  append和write函数是否覆写都与对象创建模式有关
 FileWriter(File file, boolean append)  //将内容输出到指定文件，追加新内容,不会覆写原有内容
+
+
+字节流和字符流区别
+
+
+流的转换
+InputStreamReader(InputStream in)  //Reader的子类，把字节输入流转换成字符输入流
+
+OutputStreamWriter(OutputStream out)  // Writer的子类，把字节输出流转换成字符输出流
+
+
+字符流可以指定文件编码格式，字节流不可以
